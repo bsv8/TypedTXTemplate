@@ -1,0 +1,205 @@
+{
+  "$schema": "typedtxtemplate/vectors/1",
+  "note": "由独立第三方实现生成，用于 Go / TypeScript 差分测试。所有脚本均为最终字节，任何实现必须逐字节复现。询价与报价通信不在本规范范围内，见 bsv8/ChannelProtocol 的 bsv8.bbs.quote.v1。",
+  "kinds": {
+    "BSV8:POST:1.0": {
+      "fieldCount": 9,
+      "fixedOverhead": 255,
+      "bodyMax": 265,
+      "fields": [
+        {
+          "name": "version",
+          "type": "u8",
+          "len": 1
+        },
+        {
+          "name": "boardId",
+          "type": "bytes",
+          "len": 16
+        },
+        {
+          "name": "postHash",
+          "type": "hash256",
+          "len": 32
+        },
+        {
+          "name": "parentHash",
+          "type": "hash256",
+          "len": 32
+        },
+        {
+          "name": "posterPub",
+          "type": "pubkey",
+          "len": 33
+        },
+        {
+          "name": "fee",
+          "type": "u64le",
+          "len": 8
+        },
+        {
+          "name": "notAfterHeight",
+          "type": "u32le",
+          "len": 4
+        },
+        {
+          "name": "operatorSig",
+          "type": "sig64",
+          "len": 64
+        },
+        {
+          "name": "body",
+          "type": "utf8",
+          "len": "0..265"
+        }
+      ]
+    }
+  },
+  "keys": {
+    "poster": {
+      "priv": "0101010101010101010101010101010101010101010101010101010101010101",
+      "pub": "021b84c5567b126440995d3ed5aaba0565d71e1834604819ff9c17f5e9d5dd078f"
+    },
+    "operator": {
+      "priv": "0202020202020202020202020202020202020202020202020202020202020202",
+      "pub": "024d4b6cd1361032ca9bd2aeb9d900aa4d45d9ead80ac9423374c451a7254d0766"
+    }
+  },
+  "signatures": {
+    "operator": {
+      "domain": "bsv8/bbs/v1/operator|",
+      "k": "0x59b760f46621cfbb0c2e119996633c3416e7f25c7b1d149afa6bfc845a67eb14",
+      "preimageLen": 147,
+      "preimage": "627376382f6262732f76312f6f70657261746f727c0100000000000000001111111111111111abababababababababababababababababababababababababababababababab0000000000000000000000000000000000000000000000000000000000000000021b84c5567b126440995d3ed5aaba0565d71e1834604819ff9c17f5e9d5dd078f0500000000000000ba0b0000",
+      "msg": "0185a9ee54ddf26f1a56a29b144a04fe4affbff527739d902ee2b7370b506e10",
+      "sig": "189f363f48ceac52738f387806c454d4ba56393618b9caddee2df723ea9ace6114be0788407df8b83d6a2d880dfe35064eecdbc4ff8b0c950d0e1a7f60b1e6ae"
+    }
+  },
+  "frames": [
+    {
+      "id": "post-1",
+      "kind": "BSV8:POST:1.0",
+      "expect": "valid",
+      "scriptLen": 284,
+      "script": "0d425356383a504f53543a312e3075517510000000000000000011111111111111117520abababababababababababababababababababababababababababababababab752000000000000000000000000000000000000000000000000000000000000000007521021b84c5567b126440995d3ed5aaba0565d71e1834604819ff9c17f5e9d5dd078f750805000000000000007504ba0b00007540189f363f48ceac52738f387806c454d4ba56393618b9caddee2df723ea9ace6114be0788407df8b83d6a2d880dfe35064eecdbc4ff8b0c950d0e1a7f60b1e6ae751be6a087e9a298efbc9ae8b4b9e794a8e4b88ee8af81e68daee993be7521021b84c5567b126440995d3ed5aaba0565d71e1834604819ff9c17f5e9d5dd078fac",
+      "parsed": {
+        "version": 1,
+        "boardId": "00000000000000001111111111111111",
+        "postHash": "abababababababababababababababababababababababababababababababab",
+        "parentHash": "0000000000000000000000000000000000000000000000000000000000000000",
+        "posterPub": "021b84c5567b126440995d3ed5aaba0565d71e1834604819ff9c17f5e9d5dd078f",
+        "fee": 5,
+        "notAfterHeight": 3002,
+        "operatorSig": "189f363f48ceac52738f387806c454d4ba56393618b9caddee2df723ea9ace6114be0788407df8b83d6a2d880dfe35064eecdbc4ff8b0c950d0e1a7f60b1e6ae",
+        "owner": "021b84c5567b126440995d3ed5aaba0565d71e1834604819ff9c17f5e9d5dd078f",
+        "bodyUtf8": "标题：费用与证据链",
+        "bodyLen": 27
+      }
+    }
+  ],
+  "parseRejections": [
+    {
+      "id": "unknown-tag",
+      "why": "marker 不在注册表",
+      "script": "0d425356383a4e4f50453a312e3075517521021b84c5567b126440995d3ed5aaba0565d71e1834604819ff9c17f5e9d5dd078fac"
+    },
+    {
+      "id": "field-count-short",
+      "why": "字段数少于 schema（I1）",
+      "script": "0d425356383a504f53543a312e3075517510000000000000000011111111111111117520abababababababababababababababababababababababababababababababab7521021b84c5567b126440995d3ed5aaba0565d71e1834604819ff9c17f5e9d5dd078fac"
+    },
+    {
+      "id": "field-count-long",
+      "why": "字段数多于 schema（I1）",
+      "script": "0d425356383a504f53543a312e3075517510000000000000000011111111111111117520abababababababababababababababababababababababababababababababab752000000000000000000000000000000000000000000000000000000000000000007521021b84c5567b126440995d3ed5aaba0565d71e1834604819ff9c17f5e9d5dd078f750805000000000000007504ba0b00007540189f363f48ceac52738f387806c454d4ba56393618b9caddee2df723ea9ace6114be0788407df8b83d6a2d880dfe35064eecdbc4ff8b0c950d0e1a7f60b1e6ae751be6a087e9a298efbc9ae8b4b9e794a8e4b88ee8af81e68daee993be751be6a087e9a298efbc9ae8b4b9e794a8e4b88ee8af81e68daee993be7521021b84c5567b126440995d3ed5aaba0565d71e1834604819ff9c17f5e9d5dd078fac"
+    },
+    {
+      "id": "missing-drop",
+      "why": "最后一个字段后缺 OP_DROP",
+      "script": "0d425356383a504f53543a312e3075517510000000000000000011111111111111117520abababababababababababababababababababababababababababababababab752000000000000000000000000000000000000000000000000000000000000000007521021b84c5567b126440995d3ed5aaba0565d71e1834604819ff9c17f5e9d5dd078f750805000000000000007504ba0b00007540189f363f48ceac52738f387806c454d4ba56393618b9caddee2df723ea9ace6114be0788407df8b83d6a2d880dfe35064eecdbc4ff8b0c950d0e1a7f60b1e6ae751be6a087e9a298efbc9ae8b4b9e794a8e4b88ee8af81e68daee993beac"
+    },
+    {
+      "id": "owner-not-33",
+      "why": "所有者只有 32 字节（I2）",
+      "script": "0d425356383a504f53543a312e3075517510000000000000000011111111111111117520abababababababababababababababababababababababababababababababab752000000000000000000000000000000000000000000000000000000000000000007521021b84c5567b126440995d3ed5aaba0565d71e1834604819ff9c17f5e9d5dd078f750805000000000000007504ba0b00007540189f363f48ceac52738f387806c454d4ba56393618b9caddee2df723ea9ace6114be0788407df8b83d6a2d880dfe35064eecdbc4ff8b0c950d0e1a7f60b1e6ae751be6a087e9a298efbc9ae8b4b9e794a8e4b88ee8af81e68daee993be7520024d4b6cd1361032ca9bd2aeb9d900aa4d45d9ead80ac9423374c451a7254d07ac",
+      "scriptLen": 283
+    },
+    {
+      "id": "no-checksig",
+      "why": "不以 OP_CHECKSIG 结尾（I2）",
+      "script": "0d425356383a504f53543a312e3075517510000000000000000011111111111111117520abababababababababababababababababababababababababababababababab752000000000000000000000000000000000000000000000000000000000000000007521021b84c5567b126440995d3ed5aaba0565d71e1834604819ff9c17f5e9d5dd078f750805000000000000007504ba0b00007540189f363f48ceac52738f387806c454d4ba56393618b9caddee2df723ea9ace6114be0788407df8b83d6a2d880dfe35064eecdbc4ff8b0c950d0e1a7f60b1e6ae751be6a087e9a298efbc9ae8b4b9e794a8e4b88ee8af81e68daee993be7521021b84c5567b126440995d3ed5aaba0565d71e1834604819ff9c17f5e9d5dd078f"
+    },
+    {
+      "id": "non-minimal-push",
+      "why": "version 写成 01 01 而非 OP_1（最短性）",
+      "script": "0d425356383a504f53543a312e307501017510000000000000000011111111111111117520abababababababababababababababababababababababababababababababab752000000000000000000000000000000000000000000000000000000000000000007521021b84c5567b126440995d3ed5aaba0565d71e1834604819ff9c17f5e9d5dd078f750805000000000000007504ba0b00007540189f363f48ceac52738f387806c454d4ba56393618b9caddee2df723ea9ace6114be0788407df8b83d6a2d880dfe35064eecdbc4ff8b0c950d0e1a7f60b1e6ae751be6a087e9a298efbc9ae8b4b9e794a8e4b88ee8af81e68daee993be7521021b84c5567b126440995d3ed5aaba0565d71e1834604819ff9c17f5e9d5dd078fac"
+    },
+    {
+      "id": "trailing-byte",
+      "why": "OP_CHECKSIG 之后有多余字节",
+      "script": "0d425356383a504f53543a312e3075517510000000000000000011111111111111117520abababababababababababababababababababababababababababababababab752000000000000000000000000000000000000000000000000000000000000000007521021b84c5567b126440995d3ed5aaba0565d71e1834604819ff9c17f5e9d5dd078f750805000000000000007504ba0b00007540189f363f48ceac52738f387806c454d4ba56393618b9caddee2df723ea9ace6114be0788407df8b83d6a2d880dfe35064eecdbc4ff8b0c950d0e1a7f60b1e6ae751be6a087e9a298efbc9ae8b4b9e794a8e4b88ee8af81e68daee993be7521021b84c5567b126440995d3ed5aaba0565d71e1834604819ff9c17f5e9d5dd078fac00"
+    },
+    {
+      "id": "over-520",
+      "why": "脚本超过 520 字节（I3）",
+      "script": "0d425356383a504f53543a312e3075517510000000000000000011111111111111117520abababababababababababababababababababababababababababababababab752000000000000000000000000000000000000000000000000000000000000000007521021b84c5567b126440995d3ed5aaba0565d71e1834604819ff9c17f5e9d5dd078f750805000000000000007504ba0b00007540189f363f48ceac52738f387806c454d4ba56393618b9caddee2df723ea9ace6114be0788407df8b83d6a2d880dfe35064eecdbc4ff8b0c950d0e1a7f60b1e6ae754d9001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007521021b84c5567b126440995d3ed5aaba0565d71e1834604819ff9c17f5e9d5dd078fac"
+    }
+  ],
+  "semanticRejections": [
+    {
+      "id": "bad-version",
+      "why": "version != 1",
+      "mutate": {
+        "field": 0,
+        "value": "02"
+      }
+    },
+    {
+      "id": "zero-fee",
+      "why": "fee == 0（不构成付费帖）",
+      "mutate": {
+        "field": 5,
+        "value": "0000000000000000"
+      }
+    },
+    {
+      "id": "zero-notAfter",
+      "why": "notAfterHeight == 0",
+      "mutate": {
+        "field": 6,
+        "value": "00000000"
+      }
+    },
+    {
+      "id": "self-parent",
+      "why": "parentHash == postHash",
+      "mutate": {
+        "field": 3,
+        "value": "abababababababababababababababababababababababababababababababab"
+      }
+    },
+    {
+      "id": "owner-not-poster",
+      "why": "owner != posterPub",
+      "mutate": {
+        "owner": "024d4b6cd1361032ca9bd2aeb9d900aa4d45d9ead80ac9423374c451a7254d0766"
+      }
+    },
+    {
+      "id": "bad-sig",
+      "why": "operatorSig 验不过",
+      "mutate": {
+        "field": 7,
+        "value": "000000000000000000000000000000000000000000000000000000000000000014be0788407df8b83d6a2d880dfe35064eecdbc4ff8b0c950d0e1a7f60b1e6ae"
+      }
+    },
+    {
+      "id": "invalid-utf8",
+      "why": "body 不是合法 UTF-8",
+      "mutate": {
+        "field": 8,
+        "value": "ff"
+      }
+    }
+  ]
+}
